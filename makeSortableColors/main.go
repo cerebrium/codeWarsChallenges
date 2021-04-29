@@ -39,7 +39,7 @@ type ColorObject struct {
 }
 
 // array maker helper
-func createColor(color Color) *ColorObject {
+func createColor(color Color) ColorObject {
 	// make the object to return
 	m := new(ColorObject)
 
@@ -113,17 +113,20 @@ func createColor(color Color) *ColorObject {
 	m.sat = sat
 	m.val = val
 
-	return m
+	return *m
 }
 
 // function to sort colors
-func createSortableArray(array []Color) *[]ColorObject {
-	finalArray := new([]ColorObject)
+func createSortableArray(array []Color) []ColorObject {
+	// instantiate the array to return
+	var finalArray []ColorObject
 
+	// loop through the array and append each new color
 	for _, color := range array {
-		createColor(color)
+		finalArray = append(finalArray, createColor(color))
 	}
 
+	// return the array
 	return finalArray
 }
 
