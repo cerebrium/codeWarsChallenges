@@ -83,14 +83,20 @@ func courseTextOutput(checkedSchedule bool) string {
 	}
 }
 
+// helper function for making courses
+func courseMaker(course int16, preRequisite int16) []int16 {
+	// put the values into the array
+	courseArray := []int16{course, preRequisite}
+
+	// return array
+	return courseArray
+}
+
 func main() {
-	courseOne := []int16{0, 1}
-	courseTwo := []int16{1, 0}
-	courseThree := []int16{2, 1}
 
 	// make test array
-	testArrayCircular := [][]int16{courseOne, courseTwo}
-	testArrayViable := [][]int16{courseOne, courseThree}
+	testArrayCircular := [][]int16{courseMaker(0, 1), courseMaker(1, 0)}
+	testArrayViable := [][]int16{courseMaker(1, 0), courseMaker(2, 1)}
 
 	// check for cycle
 	fmt.Println("Should return circular: ", courseTextOutput(courseSchedule(testArrayCircular)))
